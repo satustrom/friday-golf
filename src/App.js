@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import isEmpty from 'lodash/isEmpty';
-import { Observer, useObserver } from 'mobx-react-lite';
 
 import Box from '@material-ui/core/Box';
 import styled, { createGlobalStyle } from 'styled-components';
