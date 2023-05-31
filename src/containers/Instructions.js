@@ -5,10 +5,10 @@ import IconButton from '@material-ui/core/IconButton';
 import Icon from '@material-ui/core/Icon';
 import Typography from '@material-ui/core/Typography';
 
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import Link from '@material-ui/core/Link';
+// import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+// import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+// import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+// import Link from '@material-ui/core/Link';
 
 import Modal from '../components/Modal';
 
@@ -39,7 +39,7 @@ export default function Instructions() {
             Here you can find all the information you need in order to play. Remember to have fun
             and enjoy the ride, winning is just a secondary matter!
           </Typography>
-          <Box my={2}>
+          {/* <Box my={2}>
             <ExpansionCard header="What do I need to have?">
               <Typography mr="2px" component="span">
                 The most important thing is a mini golf set. If you are unsure what that is, see
@@ -70,24 +70,25 @@ export default function Instructions() {
                 <strong>More instructions to come!</strong>
               </Typography>
             </ExpansionCard>
-          </Box>
+          </Box> */}
         </Box>
       </Modal>
     </>
   );
 }
 
-const ExpansionCard = ({ header, children, id }) => (
-  <ExpansionPanel square={false} style={{ backgroundColor: '#383838', color: '#ffffff' }}>
-    <ExpansionPanelSummary
-      expandIcon={<Icon style={{ color: '#ffffff' }}>expand_more</Icon>}
-      id={id}
-    >
-      <Typography variant="h6">{header}</Typography>
-    </ExpansionPanelSummary>
-    <ExpansionPanelDetails style={{ display: 'inline-block' }}>{children}</ExpansionPanelDetails>
-  </ExpansionPanel>
-);
+// TODO: Write better instructions
+// const ExpansionCard = ({ header, children, id }) => (
+//   <ExpansionPanel square={false} style={{ backgroundColor: '#383838', color: '#ffffff' }}>
+//     <ExpansionPanelSummary
+//       expandIcon={<Icon style={{ color: '#ffffff' }}>expand_more</Icon>}
+//       id={id}
+//     >
+//       <Typography variant="h6">{header}</Typography>
+//     </ExpansionPanelSummary>
+//     <ExpansionPanelDetails style={{ display: 'inline-block' }}>{children}</ExpansionPanelDetails>
+//   </ExpansionPanel>
+// );
 
 const useStyles = makeStyles({
   check: {

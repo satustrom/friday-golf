@@ -34,7 +34,6 @@ export class GameChanger {
     if (this.isOpen === false) {
       this.isOpen = true;
     }
-
     this.selectedIndex = newValue;
   };
 }

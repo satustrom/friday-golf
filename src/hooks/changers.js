@@ -1,21 +1,22 @@
 import { useEffect, useState } from 'react';
-import Tabletop from 'tabletop';
+import useGoogleSheets from 'use-google-sheets';
 
 export default function useChangers() {
   const [changers, setChangers] = useState({});
 
+  const { data } = useGoogleSheets({
+    apiKey: process.env.REACT_APP_GOOGLE_API_KEY,
+    sheetId: process.env.REACT_APP_GOOGLE_SHEETS_ID
+  });
+
   useEffect(() => {
-    Tabletop.init({
-      key: process.env.REACT_APP_GOOGLE_KEY,
-      callback: googleData => {
-        const filteredData = googleData.filter(
-          data => data.ready === 'TRUE' && data.name.length > 0
-        );
-        setChangers(filteredData);
-      },
-      simpleSheet: true
-    });
-  }, []);
+    const changersData = data ? data[0]?.data : null;
+    if (changersData) {
+      const filtered = changersData.filter(d => d.ready === 'TRUE' && d.name.length > 0);
+
+      setChangers(filtered);
+    }
+  }, [data]);
 
   return changers;
 }

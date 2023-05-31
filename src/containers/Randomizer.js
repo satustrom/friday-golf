@@ -33,7 +33,7 @@ export default function Randomizer() {
               }}
               highlight
             >
-              points randomizer
+              randomize points
             </Button>
           </Box>
           {isOpen && (

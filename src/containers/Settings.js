@@ -15,7 +15,7 @@ import useStore from '../hooks/store';
 
 import Modal from '../components/Modal';
 
-export default function Settings() {
+export default function Settings({ onPointsEnabledChange }) {
   const classes = useStyles();
   const store = useStore('settings');
   const [isOpen, setIsOpen] = useState(false);
@@ -42,6 +42,7 @@ export default function Settings() {
     if (save) {
       store.updatePoints(points);
       store.updateRules(rules);
+      onPointsEnabledChange(rules.isPointsEnabled);
     } else {
       reset();
     }
@@ -71,6 +72,22 @@ export default function Settings() {
           <Modal header="Settings" isOpen={isOpen} onClose={() => handleClose(false)} pb={0} px={0}>
             <Box px={3}>
               <h2>Points randomizer</h2>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    id="not-same"
+                    checkedIcon={<EmojiEmotionsIcon />}
+                    name="not-same-check"
+                    checked={rules.isPointsEnabled}
+                    onChange={() =>
+                      handleSetRules({ ...rules, isPointsEnabled: !rules.isPointsEnabled })
+                    }
+                  />
+                }
+                label="Enable points randomizer"
+                className={classes.form}
+              ></FormControlLabel>
+
               <h3>Ranges</h3>
               <Box my={2}>
                 <p>Select min and max values</p>
@@ -94,6 +111,7 @@ export default function Settings() {
                     max={50}
                     value={points.big}
                     onChange={(event, newValue) => handleSetPoints({ ...points, big: newValue })}
+                    disabled={!rules.isPointsEnabled}
                   />
                 </Box>
               </Box>
@@ -116,6 +134,7 @@ export default function Settings() {
                     max={50}
                     value={points.small}
                     onChange={(event, newValue) => handleSetPoints({ ...points, small: newValue })}
+                    disabled={!rules.isPointsEnabled}
                   />
                 </Box>
               </Box>
@@ -138,6 +157,7 @@ export default function Settings() {
                     max={50}
                     value={points.miss}
                     onChange={(event, newValue) => handleSetPoints({ ...points, miss: newValue })}
+                    disabled={!rules.isPointsEnabled}
                   />
                 </Box>
               </Box>
@@ -154,6 +174,7 @@ export default function Settings() {
                     checked={rules.avoidNull}
                     onChange={() => handleSetRules({ ...rules, avoidNull: !rules.avoidNull })}
                     className={classes.checkbox}
+                    disabled={!rules.isPointsEnabled}
                   />
                 }
                 label="Skip zero"
@@ -169,6 +190,7 @@ export default function Settings() {
                     onChange={() =>
                       handleSetRules({ ...rules, notSameNumber: !rules.notSameNumber })
                     }
+                    disabled={!rules.isPointsEnabled}
                   />
                 }
                 label="Not same numbers in a row"

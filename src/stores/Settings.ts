@@ -13,6 +13,7 @@ export interface SettingsStore {
 }
 
 export interface Rules {
+  isPointsEnabled: boolean;
   avoidNull: boolean;
   notSameNumber: boolean;
 }
@@ -24,6 +25,7 @@ export class Settings {
   missRange = initialPointRange('miss');
 
   // Rules
+  isPointsEnabled = initialRule('isPointsEnabled');
   avoidNull = initialRule('avoidNull');
   notSameNumber = initialRule('notSameNumber');
 
@@ -46,6 +48,7 @@ export class Settings {
   updateRules = (rules: Rules) => {
     store.set('rules', rules);
 
+    this.isPointsEnabled = rules.isPointsEnabled;
     this.avoidNull = rules.avoidNull;
     this.notSameNumber = rules.notSameNumber;
   };
@@ -64,6 +67,7 @@ export class Settings {
 
   get rules() {
     return {
+      isPointsEnabled: this.isPointsEnabled,
       avoidNull: this.avoidNull,
       notSameNumber: this.notSameNumber
     };

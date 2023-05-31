@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import isEmpty from 'lodash/isEmpty';
+import { Observer, useObserver } from 'mobx-react-lite';
+
 import Box from '@material-ui/core/Box';
 import styled, { createGlobalStyle } from 'styled-components';
 
@@ -16,6 +18,8 @@ import Button from './components/Button';
 function App() {
   const changers = useChangers();
   const store = useStore('gameChanger');
+  const settingsStore = useStore('settings');
+  const [isPointsEnabled, setIsPointsEnabled] = useState(settingsStore.rules.isPointsEnabled);
 
   // TODO v2.0. Animation when max points reached
   return (
@@ -25,18 +29,18 @@ function App() {
         <Heading>Friday Golf</Heading>
       </Box>
 
-      <Settings />
+      <Settings onPointsEnabledChange={value => setIsPointsEnabled(value)} />
       <Instructions />
 
-      <Box display="flex" justifyContent="center" mt={2}>
+      <Box display="flex" alignItems="center" justifyContent="center" mt={6}>
         <Button onClick={() => store.randomizeChanger(changers)} disabled={isEmpty(changers)}>
-          Game changer
+          Randomize game changer
         </Button>
       </Box>
 
       <Wrapper>
         <GameChanger changers={changers} />
-        <Randomizer />
+        {isPointsEnabled && <Randomizer />}
       </Wrapper>
     </>
   );

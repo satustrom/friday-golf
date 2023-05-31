@@ -10,7 +10,7 @@ export function initialPointRange(param: 'big' | 'small' | 'miss') {
   return [-50, 50];
 }
 
-export function initialRule(param: 'avoidNull' | 'notSameNumber') {
+export function initialRule(param: 'isPointsEnabled' | 'avoidNull' | 'notSameNumber') {
   const savedRule = store.get('rules');
 
   if (savedRule) {
